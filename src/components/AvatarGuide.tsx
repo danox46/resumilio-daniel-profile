@@ -149,7 +149,7 @@ export default function AvatarGuide({ playback, layout, onComplete }: {
   );
   const transition = pending ? "pending" : outgoing ? "crossfade" : "settled";
 
-  return <figure className="avatar-guide" data-avatar-state={playback.reaction} data-avatar-mode={playback.mode} data-avatar-sequence={playback.sequence} data-avatar-active-state={current.reaction} data-avatar-transition={transition} data-avatar-layout={layout} data-avatar-variant={playback.reaction === "guide" ? layout : "shared"} aria-hidden="true">
+  return <figure className="avatar-guide" data-avatar-state={playback.reaction} data-avatar-mode={playback.mode} data-avatar-sequence={playback.sequence} data-avatar-active-state={current.reaction} data-avatar-transition={transition} data-avatar-layout={layout} data-avatar-variant={current.variant.startsWith("guide-") ? current.variant.slice("guide-".length) : "shared"} aria-hidden="true">
     <div className="avatar-node-backdrop"/>
     <div className="avatar-media">
       <img className="avatar-poster" src="/media/avatar/daniel-idle-poster.webp" alt="" width="360" height="640" decoding="async" loading="eager" fetchPriority="high"/>
