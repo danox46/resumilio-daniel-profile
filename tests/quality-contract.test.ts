@@ -107,7 +107,7 @@ test("the avatar uses bounded local media for shared and responsive reactions", 
   assert.match(component, /intent\.reaction === "guide"\) showGuide\(\)/);
   assert.match(component, /stackedAvatarQuery = "\(max-width: 700px\)"/);
   assert.match(component, /media\.addEventListener\("change", syncLayout\)/);
-  assert.match(avatarComponent, /data-avatar-variant=\{playback\.reaction === "guide" \? layout : "shared"\}/);
+  assert.match(avatarComponent, /data-avatar-variant=\{current\.variant\.startsWith\("guide-"\) \? current\.variant\.slice\("guide-"\.length\) : "shared"\}/);
   assert.doesNotMatch(avatarComponent, /avatar-mobile-callout/);
   assert.match(styles, /\.experience-shell \.avatar-guide \{\s*left: clamp\(105px, 13vw, 220px\);\s*bottom: -7%;/);
   assert.match(styles, /@media \(min-width: 1800px\)[\s\S]*?width: clamp\(300px, min\(18vw, 38svh, calc\(30vw - 300px\)\), 470px\)/);
