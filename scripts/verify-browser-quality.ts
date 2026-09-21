@@ -473,8 +473,10 @@ try {
   const guideSequenceBeforeSwap = Number(await avatar.getAttribute("data-avatar-sequence"));
   await motionPage.waitForFunction(() => matchMedia("(max-width: 700px)").matches
     && document.querySelector(".avatar-guide")?.getAttribute("data-avatar-layout") === "stacked"
+    && document.querySelector(".avatar-guide")?.getAttribute("data-avatar-variant") === "stacked"
     && document.querySelector(".avatar-guide")?.getAttribute("data-avatar-active-state") === "guide"
-    && document.querySelector(".avatar-guide")?.getAttribute("data-avatar-transition") === "settled");
+    && document.querySelector(".avatar-guide")?.getAttribute("data-avatar-transition") === "settled"
+    && document.querySelector<HTMLVideoElement>('.avatar-video[data-avatar-video-role="active"]')?.currentSrc.endsWith("daniel-guide-stacked.mp4"));
   const selectedNodeTitle = (await motionPage.locator(".experience-focus h2").getAttribute("aria-label"))?.trim();
   const mobileNodeCount = await motionPage.locator(".claim-node:visible").count();
   const mobileFocusVisible = await motionPage.locator(".experience-focus").isVisible();
