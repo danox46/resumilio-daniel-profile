@@ -2,7 +2,7 @@
 import type { Locale, ResumilioProfile } from "../profile";
 import { marketClaimSummary } from "../presentation";
 import { claimShowcases } from "../showcase";
-import { absoluteUrl, classicClaimPath, classicPath, localeRoot } from "../site";
+import { absoluteUrl, classicClaimPath, classicPath, localeRoot, withBase } from "../site";
 import { buildProfileJsonLd } from "../structured-data";
 import "../styles/classic-resume.css";
 
@@ -52,7 +52,7 @@ const pageSize = 3;
     <link rel="alternate" hreflang={locale} href={canonical} />
     <link rel="alternate" hreflang={alternateLocale} href={alternate} />
     <link rel="alternate" hreflang="x-default" href={absoluteUrl(classicPath("en"))} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={withBase("/favicon.svg")} />
     <meta property="og:type" content="profile" />
     <meta property="og:title" content={`${profile.profile.name[locale]} — ${profile.profile.headline[locale]}`} />
     <meta property="og:description" content={profile.profile.summary[locale]} />

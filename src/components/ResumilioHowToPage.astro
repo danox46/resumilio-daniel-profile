@@ -1,14 +1,14 @@
 ---
-import { absoluteUrl } from "../site";
+import { absoluteUrl, withBase } from "../site";
 import "../styles/brand.css";
 
 interface Props { locale: "en" | "es"; }
 const { locale } = Astro.props;
 const isEnglish = locale === "en";
-const canonicalPath = isEnglish ? "/how-to/" : "/es/como-usar/";
-const alternatePath = isEnglish ? "/es/como-usar/" : "/how-to/";
-const overviewPath = isEnglish ? "/about/" : "/es/acerca/";
-const profilePath = isEnglish ? "/" : "/es/";
+const canonicalPath = withBase(isEnglish ? "/how-to/" : "/es/como-usar/");
+const alternatePath = withBase(isEnglish ? "/es/como-usar/" : "/how-to/");
+const overviewPath = withBase(isEnglish ? "/about/" : "/es/acerca/");
+const profilePath = withBase(isEnglish ? "/" : "/es/");
 const socialImage = absoluteUrl("/media/resumilio-v0.8.0-social.png");
 
 const copy = isEnglish ? {
@@ -84,7 +84,7 @@ const copy = isEnglish ? {
     <link rel="alternate" hreflang="en" href={absoluteUrl("/how-to/")} />
     <link rel="alternate" hreflang="es" href={absoluteUrl("/es/como-usar/")} />
     <link rel="alternate" hreflang="x-default" href={absoluteUrl("/how-to/")} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={withBase("/favicon.svg")} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Resumilio" />
     <meta property="og:title" content={`${copy.title} — Resumilio`} />

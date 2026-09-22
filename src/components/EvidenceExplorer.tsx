@@ -24,7 +24,7 @@ import {
 import type { Locale, ResumilioProfile } from "../profile.js";
 import { marketClaimSummary, marketEvidenceTitle } from "../presentation.js";
 import { claimShowcase, claimShowcases } from "../showcase.js";
-import { classicClaimPath } from "../site.js";
+import { classicClaimPath, localeRoot, withBase } from "../site.js";
 import AvatarGuide from "./AvatarGuide.js";
 
 const sessionKey = "resumilio:discovery:v1";
@@ -526,14 +526,14 @@ export default function EvidenceExplorer({ profile, initialLocale = profile.prof
 
   return <div className="experience-shell">
     <header className="constellation-header">
-      <a className="constellation-wordmark" href={locale === "en" ? "/" : "/es/"}><strong>{profile.profile.name[locale]}</strong><span>{profile.profile.headline[locale]}</span></a>
+      <a className="constellation-wordmark" href={localeRoot(locale)}><strong>{profile.profile.name[locale]}</strong><span>{profile.profile.headline[locale]}</span></a>
       <form className={`search-controls${mobileSearchOpen ? " search-controls--open" : ""}`} role="search" onSubmit={(event) => { submitSearch(event); setMobileSearchOpen(false); }}>
         <button className="mobile-search-toggle" type="button" aria-label={t.search} aria-expanded={mobileSearchOpen} onClick={() => setMobileSearchOpen((current) => !current)}><SearchIcon/></button>
         <label className="search-field"><span className="sr-only">{t.search}</span><SearchIcon/><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder={t.placeholder}/></label>
       </form>
       <div className="constellation-actions">
-        <a className="resumilio-about-link" href={locale === "en" ? "/about/" : "/es/acerca/"}>{t.about}</a>
-        <a className="locale-control" href={locale === "en" ? "/es/" : "/"} onClick={(event) => { event.preventDefault(); setLocale(locale === "en" ? "es" : "en"); }} aria-label={locale === "en" ? "Cambiar a español" : "Switch to English"}><strong className={locale === "en" ? "is-active" : ""}>EN</strong><span>/</span><strong className={locale === "es" ? "is-active" : ""}>ES</strong></a>
+        <a className="resumilio-about-link" href={withBase(locale === "en" ? "/about/" : "/es/acerca/")}>{t.about}</a>
+        <a className="locale-control" href={localeRoot(locale === "en" ? "es" : "en")} onClick={(event) => { event.preventDefault(); setLocale(locale === "en" ? "es" : "en"); }} aria-label={locale === "en" ? "Cambiar a español" : "Switch to English"}><strong className={locale === "en" ? "is-active" : ""}>EN</strong><span>/</span><strong className={locale === "es" ? "is-active" : ""}>ES</strong></a>
         <button className="reset-control" type="button" onClick={reset}><ResetIcon/><span>{t.reset}</span></button>
       </div>
     </header>

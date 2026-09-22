@@ -1,15 +1,15 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "resumilio",
-  "compatibility_date": "2026-09-12",
+  "name": "resumilio-daniel-profile",
+  "compatibility_date": "2026-09-18",
   "workers_dev": false,
   "routes": [
-    {
-      "pattern": "resumilio.danienremoto.com",
-      "custom_domain": true
-    }
+    { "pattern": "danienremoto.com/dani", "zone_name": "danienremoto.com" },
+    { "pattern": "danienremoto.com/dani/*", "zone_name": "danienremoto.com" },
+    { "pattern": "www.danienremoto.com/dani", "zone_name": "danienremoto.com" },
+    { "pattern": "www.danienremoto.com/dani/*", "zone_name": "danienremoto.com" }
   ],
   "assets": {
-    "directory": "./site-dist"
+    "directory": "./personal-dist"
   }
 }

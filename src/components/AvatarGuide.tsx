@@ -1,18 +1,19 @@
 import { useCallback, useEffect, useRef, useState, type CSSProperties, type SyntheticEvent } from "react";
 import type { AvatarLayout, AvatarPlayback, AvatarReaction } from "../avatar-schedule.js";
+import { withBase } from "../site.js";
 
 const crossfadeDurationMs = 180;
 const incomingFallbackMs = 1_000;
 
 const avatarMedia: Record<Exclude<AvatarReaction, "guide">, string> = {
-  idle: "/media/avatar/daniel-idle.mp4",
-  waiting: "/media/avatar/daniel-waiting.mp4",
-  nod: "/media/avatar/daniel-nod.mp4",
-  smile: "/media/avatar/daniel-smile.mp4",
+  idle: withBase("/media/avatar/daniel-idle.mp4"),
+  waiting: withBase("/media/avatar/daniel-waiting.mp4"),
+  nod: withBase("/media/avatar/daniel-nod.mp4"),
+  smile: withBase("/media/avatar/daniel-smile.mp4"),
 };
 const avatarGuideMedia: Record<AvatarLayout, string> = {
-  wide: "/media/avatar/daniel-guide-wide.mp4",
-  stacked: "/media/avatar/daniel-guide-stacked.mp4",
+  wide: withBase("/media/avatar/daniel-guide-wide.mp4"),
+  stacked: withBase("/media/avatar/daniel-guide-stacked.mp4"),
 };
 
 type AvatarVariant = Exclude<AvatarReaction, "guide"> | "guide-wide" | "guide-stacked";
@@ -137,7 +138,7 @@ export default function AvatarGuide({ playback, layout, onComplete }: {
       data-avatar-video-variant={layer.variant}
       src={layer.source}
       style={framingStyle(layer.variant)}
-      poster="/media/avatar/daniel-idle-poster.webp"
+      poster={withBase("/media/avatar/daniel-idle-poster.webp")}
       muted
       playsInline
       autoPlay={role !== "pending"}
@@ -152,7 +153,7 @@ export default function AvatarGuide({ playback, layout, onComplete }: {
   return <figure className="avatar-guide" data-avatar-state={playback.reaction} data-avatar-mode={playback.mode} data-avatar-sequence={playback.sequence} data-avatar-active-state={current.reaction} data-avatar-transition={transition} data-avatar-layout={layout} data-avatar-variant={current.variant.startsWith("guide-") ? current.variant.slice("guide-".length) : "shared"} aria-hidden="true">
     <div className="avatar-node-backdrop"/>
     <div className="avatar-media">
-      <img className="avatar-poster" src="/media/avatar/daniel-idle-poster.webp" alt="" width="360" height="640" decoding="async" loading="eager" fetchPriority="high"/>
+      <img className="avatar-poster" src={withBase("/media/avatar/daniel-idle-poster.webp")} alt="" width="360" height="640" decoding="async" loading="eager" fetchPriority="high"/>
       {outgoing && renderVideo(outgoing, "outgoing")}
       {renderVideo(current, "active")}
       {pending && renderVideo(pending, "pending")}

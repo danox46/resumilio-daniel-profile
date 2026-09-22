@@ -21,6 +21,7 @@
     "build": "npm run build:package && npm run build:site",
     "build:package": "node scripts/clean-package-build.mjs && tsc -p tsconfig.build.json",
     "build:site": "astro build",
+    "build:personal": "node scripts/build-personal-site.mjs",
     "typecheck": "tsc --noEmit && astro check",
     "cli": "tsx src/cli.ts",
     "mcp": "tsx src/mcp-server.ts",
@@ -38,8 +39,9 @@
     "release:pack": "npm run build:package && tsx scripts/build-release-assets.ts",
     "release:card": "tsx scripts/render-launch-card.ts",
     "dev:cloudflare": "wrangler dev --local",
-    "deploy:preview": "wrangler versions upload",
-    "deploy:public": "wrangler deploy",
+    "deploy:preview": "npm run build:personal && wrangler versions upload",
+    "deploy:public": "npm run build:personal && wrangler deploy",
+    "verify:personal-build": "node scripts/verify-personal-build.mjs",
     "phase1": "npm run typecheck && npm run validate && npm test && npm run scan:public",
     "phase2": "npm run build && npm run typecheck && npm run validate && npm test && npm run scan:public && npm pack --dry-run",
     "phase3": "npm run build && npm run typecheck && npm run validate && npm test && npm run verify:static && npm run scan:public",
@@ -49,12 +51,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/danox46/resumilio.git"
+    "url": "git+https://github.com/danox46/resumilio-daniel-profile.git"
   },
   "bugs": {
-    "url": "https://github.com/danox46/resumilio/issues"
+    "url": "https://github.com/danox46/resumilio-daniel-profile/issues"
   },
-  "homepage": "https://resumilio.danienremoto.com",
+  "homepage": "https://danienremoto.com/dani/",
   "publishConfig": {
     "access": "public",
     "provenance": true

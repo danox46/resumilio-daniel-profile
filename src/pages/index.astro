@@ -2,7 +2,7 @@
 import EvidenceExplorer from "../components/EvidenceExplorer";
 import profile from "../../profiles/daniel.json";
 import type { ResumilioProfile } from "../profile";
-import { absoluteUrl } from "../site";
+import { absoluteUrl, withBase } from "../site";
 import { buildProfileJsonLd } from "../structured-data";
 import "../styles/global.css";
 
@@ -23,8 +23,8 @@ const jsonLd = buildProfileJsonLd(publicProfile, "en");
     <link rel="alternate" hreflang="en" href={canonical} />
     <link rel="alternate" hreflang="es" href={alternate} />
     <link rel="alternate" hreflang="x-default" href={canonical} />
-    <link rel="preload" as="image" type="image/webp" href="/media/avatar/daniel-idle-poster.webp" fetchpriority="high" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" as="image" type="image/webp" href={withBase("/media/avatar/daniel-idle-poster.webp")} fetchpriority="high" />
+    <link rel="icon" type="image/svg+xml" href={withBase("/favicon.svg")} />
     <meta property="og:type" content="profile" />
     <meta property="og:site_name" content="Daniel Rosales" />
     <meta property="og:title" content={`Daniel Rosales — ${publicProfile.profile.headline.en}`} />

@@ -125,7 +125,7 @@ test("the avatar uses bounded local media for shared and responsive reactions", 
   assert.match(avatarComponent, /autoPlay=\{role !== "pending"\}/);
   assert.match(avatarComponent, /preload="auto"/);
   assert.doesNotMatch(component, /beginMotion|mediaReady/);
-  assert.equal(entryPages.match(/rel="preload" as="image" type="image\/webp" href="\/media\/avatar\/daniel-idle-poster\.webp" fetchpriority="high"/g)?.length, 2);
+  assert.equal(entryPages.match(/rel="preload" as="image" type="image\/webp" href=\{withBase\("\/media\/avatar\/daniel-idle-poster\.webp"\)\} fetchpriority="high"/g)?.length, 2);
   assert.doesNotMatch(component + avatarComponent, /flow\.google|labs\.google|generativelanguage|\bveo\b/i);
   assert.match(component, /mode: "loading"/);
   assert.match(component, /commitAvatar\("smile", "welcome"\)/);

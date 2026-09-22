@@ -2,6 +2,7 @@ node_modules/
 coverage/
 dist/
 site-dist/
+personal-dist/
 .astro/
 .playwright-cli/
 .wrangler/
